@@ -11,6 +11,7 @@ public class InfoService {
 
     public BoardData get(long id) {
 
+        // 조회된 게시글이 없을 때
         BoardData data = boardDataDao.get(id);
         if (data == null) {
             throw new BoardDataNotFoundException();

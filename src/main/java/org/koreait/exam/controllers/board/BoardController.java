@@ -3,6 +3,7 @@ package org.koreait.exam.controllers.board;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.koreait.exam.models.board.BoardData;
+import org.koreait.exam.models.board.BoardDataDao;
 import org.koreait.exam.models.board.InfoService;
 import org.koreait.exam.models.board.SaveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +17,24 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class BoardController {
 
-    @Autowired
-    private SaveService saveService;
-
-    @Autowired
-    private InfoService infoService;
-
+    private final SaveService saveService;
+    private final InfoService infoService;
+    private final BoardDataDao boardDataDao;
     @GetMapping("/write")
     public String write(@ModelAttribute BoardDataForm data) {
 
         return "board/write";
     }
 
+    @GetMapping("/list")
+    public String list(@ModelAttribute BoardDataForm data) {
+
+        return "board/list";
+    }
+
     @PostMapping("/save")
     public String save(@Valid BoardDataForm data, Errors errors) {
-
+        // 에러 발생 시 write 이동
         if (errors.hasErrors()) {
             return "board/write";
         }

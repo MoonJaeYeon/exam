@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<section layout:fragment="content">
+    <h1>게시판 목록</h1>
+    <th:each items="${list}" var="data">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Poster</th>
+                <th>Subject</th>
+                <th>Content</th>
+                <th>Reg Date</th>
+                <th>Mod Date</th>
+            </tr>
+            <tr th:each="data : ${list}">
+                <td th:text="${data.id}"></td>
+                <td th:text="${data.poster}"></td>
+                <td th:text="${data.subject}"></td>
+                <td th:text="${data.content}"></td>
+                <td th:text="${data.regDt}"></td>
+                <td th:text="${data.modDt}"></td>
+            </tr>
+        </table>
+
+    </th:each>
+</section>
+</html>

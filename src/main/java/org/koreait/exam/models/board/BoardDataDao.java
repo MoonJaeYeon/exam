@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -73,7 +74,10 @@ public class BoardDataDao {
             return null;
         }
     }
-
+    public List<BoardData> getAll() {
+        String sql = "SELECT * FROM TEST_BOARD";
+        return jdbcTemplate.query(sql, this::mapper);
+    }
     public BoardData mapper(ResultSet rs, int i) throws SQLException {
         Timestamp modDt = rs.getTimestamp("MODDT");
         return BoardData.builder()
