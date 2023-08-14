@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+
+<main layout:fragment="content">
+    <form method="post" th:action="@{/board/save}" th:object="${boardDataForm}">
+        <div th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+        <dl>
+            <dt>작성자</dt>
+            <dd>
+                <input type="text" name="poster" th:field="*{poster}">
+                <div th:each="err : ${#fields.errors('poster')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+        <dl>
+            <dt>제목</dt>
+            <dd>
+                <input type="text" name="subject" th:field="*{subject}">
+                <div th:each="err : ${#fields.errors('subject')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+        <dl>
+            <dt>내용</dt>
+            <dd>
+                <textarea name="content" th:field="*{content}"></textarea>
+                <div th:each="err : ${#fields.errors('content')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+        <button type="submit">작성하기</button>
+    </form>
+</main>
+</html>

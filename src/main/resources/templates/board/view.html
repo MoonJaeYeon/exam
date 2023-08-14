@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+
+<main layout:fragment="content">
+    <th:block th:object="${data}">
+        <dl>
+            <dt>제목</dt>
+            <dd th:text="*{subject}"></dd>
+        </dl>
+        <dl>
+            <dt>작성자</dt>
+            <dd th:text="*{poster}"></dd>
+        </dl>
+        <dl>
+            <dt>내용</dt>
+            <dd th:text="*{content}"></dd>
+        </dl>
+        <a th:href="@{/board/write}">작성하기</a>
+        <a th:href="@{/board/delete/{id}(id=*{id})}">삭제</a>
+        <a th:href="@{/board/list}">목록</a>
+    </th:block>
+</main>
+</html>
